@@ -38,10 +38,6 @@ eslintTester.addRuleTest("lib/rules/one-var", {
                 destructuring: true
             },
             args: [2, "never"]
-        },
-        {
-            code: "function foo() { var a, b, c; var d = 2;}",
-            args: [2, "only-undefined"]
         }
     ],
     invalid: [
@@ -108,7 +104,7 @@ eslintTester.addRuleTest("lib/rules/one-var", {
             code: "function foo() { var bar = true, baz = false; }",
             args: [2, "never"],
             errors: [{
-                message: "Multiple declarations on a single 'var'.",
+                message: "Split 'var' declaration into multiple statements.",
                 type: "VariableDeclaration"
             }]
         },
@@ -117,14 +113,6 @@ eslintTester.addRuleTest("lib/rules/one-var", {
             args: [2, "always"],
             errors: [{
                 message: "Combine this with the previous 'var' statement.",
-                type: "VariableDeclaration"
-            }]
-        },
-        {
-            code: "function foo() { var a, b, c = true; }",
-            args: [2, "only-undefined"],
-            errors: [{
-                message: "Only undefined declarations allowed on a single 'var'.",
                 type: "VariableDeclaration"
             }]
         },
